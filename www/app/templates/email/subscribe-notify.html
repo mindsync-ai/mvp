@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ _("Example.com subscription") }}</title>
+</head>
+<body>
+<style>
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-family: Arial;
+}
+
+p {
+    font-family: Tahoma;
+}
+
+html {
+    background-color: #aaaaaa;
+}
+</style>
+
+<h1>{{ _("Example.com subscription") }}</h1>
+<img src="http://example.com/static/css/img/logo.png"/>
+<p>
+    {{ _("You or someone else has added your email to our subscription list.") }}
+</p>
+<p>
+    {{ _("Since this moment you are notified about the news and events regarding Example.com. "
+        "Below there are resources you may be interested in.") }}
+</p>
+<p>
+    {{ _("To unsubscribe click") }} <a href="http://example.com/unsubscribe/?email={{ email }}">http://example/unsubscribe/</a>.
+</p>
+</body>
+</html>

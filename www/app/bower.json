@@ -1,0 +1,21 @@
+{
+  "name": "mindsync",
+  "authors": [
+    "Mindsync"
+  ],
+  "description": "Mindsync AI Facotry",
+  "main": "app.py",
+  "license": "MIT",
+  "homepage": "https://mindsync.ai",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

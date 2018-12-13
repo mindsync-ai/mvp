@@ -1,0 +1,44 @@
+/* Add your custom web fonts here. http://www.google.com/webfonts */
+/*@import url(http://fonts.googleapis.com/css?family=Holtwood+One+SC);*/
+
+@font-face {
+  font-family: 'Bender-Light';
+  src: url('font/Bender-Light.eot?#iefix') format('embedded-opentype'),  url('font/Bender-Light.woff') format('woff'), url('font/Bender-Light.ttf')  format('truetype'), url('font/Bender-Light.svg#Bender-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bender';
+  src: url('font/Bender.eot?#iefix') format('embedded-opentype'),  url('font/Bender.woff') format('woff'), url('font/Bender.ttf')  format('truetype'), url('font/Bender.svg#Bender') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('font/OpenSans.eot?#iefix') format('embedded-opentype'),  url('font/OpenSans.woff') format('woff'), url('font/OpenSans.ttf')  format('truetype'), url('font/OpenSans.svg#OpenSans') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url('font/OpenSans-Light.eot?#iefix') format('embedded-opentype'),  url('font/OpenSans-Light.woff') format('woff'), url('font/OpenSans-Light.ttf')  format('truetype'), url('font/OpenSans-Light.svg#OpenSans-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('font/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),  url('font/OpenSans-Bold.woff') format('woff'), url('font/OpenSans-Bold.ttf')  format('truetype'), url('font/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BlackTie-Light';
+  src: url('font/BlackTie-Light.eot?#iefix') format('embedded-opentype'),  url('font/BlackTie-Light.woff') format('woff'), url('font/BlackTie-Light.ttf')  format('truetype'), url('font/BlackTie-Light.svg#BlackTie-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

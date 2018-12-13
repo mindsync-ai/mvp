@@ -1,0 +1,70 @@
+.locale-selector {
+  position: absolute;
+  left: 30px;
+  top: 25px;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: none;
+
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.locale-selector:hover .locale.en {
+  left: 0;
+  top: -18px;
+}
+
+.locale-selector:hover .locale.de {
+  left: -20px;
+  top: 18px;
+}
+
+.locale-selector:hover .locale.ru {
+  left: 20px;
+  top: 18px;
+}
+
+.locale {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: dotted 1px;
+  display: block;
+  background: center no-repeat;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 0;
+}
+
+.locale.en {
+  background: url(img/locale-en.png) center no-repeat;
+}
+
+.locale.de {
+  background: url(img/locale-de.png) center no-repeat;
+}
+
+.locale.ru {
+  background: url(img/locale-ru.png) center no-repeat;
+}
+
+.locale.active {
+  display: block;
+  z-index: 100;
+}
+
+
+/*.locale.en.expanded {*/
+
+/*}*/

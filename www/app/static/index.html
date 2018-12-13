@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% block head %}
+  <title>{% block title %}{% endblock %}</title>
+  {% endblock %}
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="mindsync, myndsync.ai, blockchain, dag, decentralization, web 3.0, crypto currency, ico, mindsync ico, mindsync token presale" />
+  <meta name="description" content="Mindsync AI Factory" />
+  <meta name="language" content="English" />
+  <meta name="copyright" content="mindsync.ai (c) 2018" />
+  <meta name="Revisit-After" content="1 Days"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <!-- Important: Do not reference other stylesheets here! The build-script won't include them. 
+       Instead use @import in style.css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- end CSS-->
+  <link rel="stylesheet" href="{{ url_for('bower.static', filename='magnific-popup/dist/magnific-popup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('bower.static', filename='datatables/media/css/jquery.dataTables.css') }}">
+  <link rel="stylesheet" href="{{ url_for('bower.static', filename='AlertifyJS/build/css/alertify.css') }}">
+  <link rel="stylesheet" href="{{ url_for('bower.static', filename='AlertifyJS/build/css/themes/default.css') }}">
+
+{#  <link rel="stylesheet" href="{{ url_for('bower.static', filename='bootstrap/dist/css/bootstrap.css') }}">#}
+{#  <script src="{{ url_for('bower.static', filename='modernizr/modernizr.js') }}"></script>#}
+{#  <script src="https://apis.google.com/js/platform.js" async defer></script>#}
+  
+  {% block head_include %}{% endblock %}
+</head>
+
+<body onload="onLoad()">
+    <div id="fb-root"></div>
+{#
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=102812350460446";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+#}
+
+    {% block main %}{% endblock %}
+
+  <!-- JavaScript at the bottom for fast page loading -->
+  <script src="{{ url_for('bower.static', filename='jquery/dist/jquery.js') }}"></script>
+  <script src="{{ url_for('bower.static', filename='magnific-popup/dist/jquery.magnific-popup.js') }}"></script>
+  <script src="{{ url_for('bower.static', filename='mobile-detect/mobile-detect.js') }}"></script>
+  <script src="{{ url_for('bower.static', filename='datatables/media/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ url_for('bower.static', filename='AlertifyJS/build/alertify.js') }}"></script>
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+{#  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>#}
+
+  <script>
+    function onLoad() {
+      $('body').hide().css('visibility', 'visible').fadeIn('slow', function() {$('html').css('background', 'none');});
+    }
+
+  </script>
+  <!-- end scripts-->
+
+  {% block scripts %}{% endblock %}
+
+  {% include "blocks/google-analytics.html" %}
+</body>
+</html>

@@ -1,0 +1,165 @@
+{% extends "home.html" %}
+
+{% block home_content %}
+
+<div id="new-dataset-popup" class="common-popup mfp-hide">
+    <h3>{{ _('Add a New Dataset') }}</h3>
+    <form id="dataset-upload-files-form" method="post">
+        <div class="float-left">
+            <input id="dataset-desc-textbox" type="text" placeholder="{{ _('Enter a Descriptive Title') }}" />
+            <small id="dataset-url-hint"></small>
+        </div>
+        <div class="float-right">
+            <input name="files" id="dataset-files" type="file" hidden multiple/>
+            <label for="dataset-files" class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                    <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                </svg>
+                <span>{{ _('Select Files to Upload') }}</span>
+            </label>
+        </div>
+
+        <ol id="file-list" class="float-clear"></ol>
+        <button class="button" type="submit">{{ _('Upload') }}</button>
+        <div class="float-clear"></div>
+    </form>
+</div>
+
+<section class="datasets">
+    <div class="content">
+        <div>
+            <h2>{{ _("Datasets") }}</h2>
+
+            <ul class="buttons float-right">
+               <li class="button">{{ _("Documentation") }}</li>
+               <a id="new-dataset" href="#new-dataset-popup"><li class="button">{{ _("New Dataset") }}</li></a>
+            </ul>
+        </div>
+
+        <div class="list float-clear">
+            <table id="datasets-list">
+                <thead>
+                    <tr>
+                        <th>{{ _('Points') }}</th>
+                        <th>{{ _('Summary') }}</th>
+                        <th>{{ _('Domain') }}</th>
+                        <th>{{ _('Statistics') }}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block datasets_script %}
+
+<script>
+    $(function(){
+        var boilerplate = $('#new-dataset-popup');
+        boilerplate.remove();
+
+        function setupNewDatasetPopup($popup) {
+            var $datasetFiles = $popup.find('#dataset-files');
+            $datasetFiles.change(function (e) {
+                var input = $datasetFiles.get(0);
+                var files = Array.from(input.files);
+                var sum = 0;
+                files.forEach(function (file)
+                {
+                    $popup.find('#file-list').append(
+                            $('<li><span class="filename">{0}</span><span class="filesize">{1}</span></li>'.format(
+                                    file.name, toHumanReadableSize(file.size))));
+                    sum += file.size;
+                });
+
+                $popup.find('#file-list').append(
+                        $('<li class="total"><span class="filename">{0}</span><span class="filesize">{1}</span></li>'.format('{{ _('Total') }}', toHumanReadableSize(sum))));
+
+                $popup.find('button[type=submit]').show();
+            });
+
+            var path = '';
+            $popup.find('#dataset-desc-textbox').keyup(function() {
+                var text = $(this).val();
+                var hint = '{{ _('Dataset URL: {0}') }}';
+                path = '/storage/{0}/'.format(encodeURIComponent(text.split(/\s+/).join('-').toLowerCase()));
+                var url = '{0}{1}'.format(window.location.host, path);
+                $('#dataset-url-hint').text(hint.format(url));
+            });
+{#            $popup.find('#dataset-desc-textbox').keyup();#}
+
+            $popup.find("#dataset-upload-files-form").submit(function() {
+              $.post(path, $(this).serialize(),
+                      function(data, status, xhr) {
+{#                        alertify.success(data);#}
+                      }).fail(function(xhr, status, error) {
+                        alertify.error(xhr.responseText);
+                      });
+              return false;
+            });
+        }
+
+        function createNewDatasetPopup() {
+            var $popup = boilerplate.clone();
+            $('#main').append($popup);
+            setupNewDatasetPopup($popup);
+            $.magnificPopup.open({type: 'inline', callbacks: {close: function() { $popup.remove(); }}, items: {src: $popup}});
+        }
+
+        $('#new-dataset').click(function() {
+            createNewDatasetPopup();
+        });
+
+        $('#datasets-list').dataTable({
+            stateSave: true,
+            dom: 'Bfltipr',
+            deferRender: true,
+            buttons: ["copy", "excel", "print"],
+            language: {
+                url: '{{ url_for("static", filename=datatables_locale) }}'
+            },
+            pagingType: "full_numbers",
+            lengthMenu: [ [10, 25, 50, 100, 500, 1000, -1], [10, 25, 50, 100, 500, 1000, "{{ _('All') }}"] ],
+            displayStart: 500,
+            "ajax": {
+                "url": "/datasets/list/",
+                "dataSrc": function(json) { return json; }
+{#
+                "dataSrc": function(json)
+                {
+                    var result = [];
+                    var filter = $('input[name=card-filter]:checked').val();
+
+                    for (var i = 0, len = json.length; i < len; ++i)
+                    {
+                        var rec = json[i];
+                        var isActive = toBool(rec["active"]);
+                        var isPendingTrans = rec.hasOwnProperty('pending_trans');
+
+                        if ((filter == "active" && isActive) ||
+                            (filter == "locked" && !isActive) ||
+                            (filter == "pending-trans" && isPendingTrans) ||
+                            filter == "all")
+                        {
+                            rec['action'] = '';
+                            result.push(rec);
+                        }
+                    }
+                    return result;
+                }
+#}
+            },
+            "columns": [
+                {"data": "rating"},
+                {"data": "summary"},
+                {"data": "domain"},
+                {"data": "stat"},
+            ]
+        });
+    });
+</script>
+
+{% endblock %}
+

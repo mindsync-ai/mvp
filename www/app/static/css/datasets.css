@@ -1,0 +1,49 @@
+section.datasets h2 {
+  float: left;
+}
+
+#new-dataset-popup {
+  max-width: 700px;
+}
+
+#new-dataset-popup input[type=file] {
+  display: none;
+}
+
+#new-dataset-popup label[for=dataset-files] {
+  margin: 5px 0 0;
+}
+
+#new-dataset-popup label[for=dataset-files] svg {
+  fill: #fff;
+}
+
+#new-dataset-popup #file-list {
+  font-size: 1em;
+}
+
+#new-dataset-popup span.filename {
+  min-width: 25em;
+  display: inline-block;
+}
+
+#new-dataset-popup span.filesize {
+  width: 7em;
+  text-align: right;
+  display: inline-block;
+}
+
+#new-dataset-popup #file-list {
+  padding-top: 1.5em;
+}
+
+#new-dataset-popup li.total {
+  margin-top: 5px;
+  list-style-type: none;
+  border-top: solid 1px darkgray;
+}
+
+#new-dataset-popup button {
+  display: none;
+  float: right;
+}

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _("Mindsync AI Factory") }}{% endblock %}
+
+{% block main %}
+
+<div id="main">
+    <header class="header">
+        <div class="content">
+            <ul class="header-menu">
+    {#
+                <li class="header-subscribe">
+                  <form id="subscribe-form" action="/subscribe/" method="post">
+                    <input id="subscribe-box" type="email"
+                           placeholder="{{ _("Subscribe") }}" name="email_address" required/>
+                    <div class="subscribe-button-wrap"></div>
+                    <button class="subscribe-button"></button>
+                  </form>
+                </li>
+    #}
+
+                <a href="/datasets/"><li id="btn-datasets" class="header-button"><span></span>{{ _("Datasets") }}</li></a>
+                <a href="/kernels/"><li id="btn-kernels" class="header-button"><span></span>{{ _("Kernels") }}</li></a>
+            </ul>
+
+    {#
+            <div class="social-wrap">
+                <div class="fb-like" data-href="http://qr4u.online" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                <div class="g-plusone" data-size="medium" data-href="http://qr4u.online"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button"
+                   data-url="http://qr4u.online">Tweet</a>
+            </div>
+    #}
+        </div>
+    </header>
+
+    {% block home_content %}{% endblock %}
+
+    <footer>
+        <div class="content">
+            <span class="copyright">&copy;2018 Mindsync Foundation</span>
+    {#
+            <ul>
+                <a href="#scan"><li>{{ _("Scan") }}</li></a>
+                <a href="#url"><li>{{ _("URL") }}</li></a>
+                <a href="#create"><li>{{ _("Create") }}</li></a>
+                <a href="#about"><li>{{ _("About") }}</li></a>
+                <a href="#contact"><li>{{ _("Contact") }}</li></a>
+            </ul>
+    #}
+        </div>
+    </footer>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+{#
+        var main = {
+            onGoogleShareClick: function ()
+            {
+                window.open('https://plus.google.com/share?url=http://example.com',
+                        undefined, 'width=600,height=400');
+            },
+
+            onFacebookShareClick: function ()
+            {
+                window.open('http://www.facebook.com/sharer/sharer.php?u=http://example.com',
+                        undefined, 'width=600,height=400');
+            }
+        };
+#}
+
+        function data2blob(data, isBase64) {
+          var chars = "";
+
+          if (isBase64)
+            chars = atob(data);
+          else
+            chars = data;
+
+          var bytes = new Array(chars.length);
+          for (var i = 0; i < chars.length; i++) {
+            bytes[i] = chars.charCodeAt(i);
+          }
+
+          var blob = new Blob([new Uint8Array(bytes)]);
+          return blob;
+        }
+
+        $(function ()
+        {
+            var md = new MobileDetect(window.navigator.userAgent);
+
+            if (md.mobile())
+            {
+                $("section.module.parallax").css("background-attachment", "scroll");
+            }
+        })
+
+        $(function ()
+        {
+            {#    $('input.currency').currencyInput();#}
+
+{#
+            $(window).scroll(function (e)
+            {
+                var distanceY = $(window).scrollTop(),
+                        shrinkOn = 0,
+                        $header = $(".header");
+
+                var enabled = distanceY > shrinkOn;
+                $header.toggleClass("smaller", enabled)
+                        .toggleClass("header-fixed", enabled)
+                        .toggleClass("header-transparent", enabled);
+            });
+#}
+
+{#
+            $('a[href*=#]:not([href=#])').click(function (e)
+            {
+                var buttons = $('.header-button');
+                for (var i = 0; i < buttons.length; ++i)
+                {
+                    var x = parseInt(Math.random() * 100 + window.screen.width) + 'px';
+                    var y = parseInt(Math.random() * window.screen.height * 2 * (Math.random() > 0.5? -1: 1)) + 'px';
+
+                    var btn = $(buttons[i]);
+                    var s = "translate({0},{1})".format(x, y);
+                    btn.css({"-webkit-transform": s, "-ms-transform": s, "transform": s});
+                }
+
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                        location.hostname == this.hostname)
+                {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length)
+                    {
+                        $('html,body').animate({scrollTop: target.offset().top}, 700);
+                        return false;
+                    }
+                }
+            });
+#}
+        }); // jquery on ready
+    </script>
+
+    {% block datasets_script %}{% endblock %}
+    {% block kernels_script %}{% endblock %}
+
+{% endblock %}

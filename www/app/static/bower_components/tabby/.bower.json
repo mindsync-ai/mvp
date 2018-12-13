@@ -1,0 +1,15 @@
+{
+  "name": "tabby",
+  "homepage": "https://github.com/cferdinandi/tabby",
+  "version": "11.2.0",
+  "_release": "11.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v11.2.0",
+    "commit": "bded7028b74c6a907ffcf417dd8e5abc765d6db0"
+  },
+  "_source": "https://github.com/cferdinandi/tabby.git",
+  "_target": "^11.2.0",
+  "_originalSource": "https://github.com/cferdinandi/tabby.git",
+  "_direct": true
+}

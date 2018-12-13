@@ -1,0 +1,22 @@
+{
+  "processing": "Wait please...",
+  "search": "Search:",
+  "lengthMenu": "Show _MENU_ rows",
+  "info": "Rows from _START_ to _END_ of _TOTAL_",
+  "infoEmpty": "Rows from 0 to 0 of 0",
+  "infoFiltered": "(filtered of _MAX_ rows)",
+  "infoPostFix": "",
+  "loadingRecords": "Loading data...",
+  "zeroRecords": "There are no rows.",
+  "emptyTable": "Empty",
+  "paginate": {
+    "first": "First",
+    "previous": "Prev",
+    "next": "Next",
+    "last": "Last"
+  },
+  "aria": {
+    "sortAscending": ": make sort by ascending",
+    "sortDescending": ": make sort by descending"
+  }
+}
