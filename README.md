@@ -1,5 +1,5 @@
 # MVP
-Mindsync AI (mindsync.ai) platform MVP.
+Mindsync AI (mindsync.ai) platform Demo.
 
 Demo is available at https://demo.mindsync.ai
 
